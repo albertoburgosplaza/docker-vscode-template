@@ -1,15 +1,8 @@
-// For format details, see https://aka.ms/vscode-remote/devcontainer.json or this file's README at:
-// https://github.com/microsoft/vscode-dev-containers/tree/v0.134.1/containers/docker-existing-dockerfile
 {
-	"name": "From Dockerfile",
-	// Sets the run context to one level up instead of the .devcontainer folder.
+	"name": "Working environment",
 	"context": "..",
-	// Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
 	"dockerFile": "../Dockerfile",
-	// Set *default* container specific settings.json values on container create.
 	"settings": {
-		"terminal.integrated.shell.linux": "/bin/zsh",
-		"python.pythonPath": "/usr/local/bin/python",
 		"python.linting.enabled": true,
 		"python.linting.pylintEnabled": true,
 		"explorer.confirmDragAndDrop": false,
@@ -28,25 +21,25 @@
 		"python.showStartPagns.autoUpdate": false,
 		"git.autofetce": false
 	},
-	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
 		"ms-python.python",
-		"ms-vsliveshare.vsliveshare-pack",
-		"ms-vsliveshare.vsliveshare",
-		"mhutchie.git-graph"
+		"ms-python.vscode-pylance"
 	],
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": [
-		9999
+	"runArgs": [
+		"--gpus",
+		"all",
+		"--device=/dev/video0:/dev/video0",
+		"-e",
+		"DISPLAY=${env:DISPLAY}",
+		"-v",
+		"/tmp/.X11-unix:/tmp/.X11-unix",
+		"-v",
+		"/home/alberto/.ssh:/home/ml/.ssh:ro"
 	],
-	// Uncomment the next line to run commands after the container is created - for example installing curl.
-	"postCreateCommand": "/bin/zsh -c \"source activate ml && python setup.py develop --no-deps\"",
-	// Uncomment when using a ptrace-based debugger like C++, Go, and Rust
-	// "runArgs": [ "--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined" ],
-	// Uncomment to use the Docker CLI from inside the container. See https://aka.ms/vscode-remote/samples/docker-from-docker.
-	// "mounts": [
-	// 	"source=volume,target=/workspaces/project_name/data,type=volume"
-	// ],
-	// Uncomment to connect as a non-root user if you've added one. See https://aka.ms/vscode-remote/containers/non-root.
-	// "remoteUser": "vscode"
+	"build": {
+		"args": {
+			"USER_ID": "1000",
+			"GROUP_ID": "1000"
+		}
+	}
 }
