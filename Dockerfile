@@ -20,6 +20,8 @@ RUN apt-get install -y \
     zsh \
     parallel \
     sudo \
+    nano \
+    vim \
     libssl-dev \
     libffi-dev \
     zlib1g-dev 
