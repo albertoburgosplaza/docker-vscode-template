@@ -25,17 +25,17 @@
 		"ms-python.python",
 		"ms-python.vscode-pylance"
 	],
-	"runArgs": [
-		"--gpus",
-		"all",
-		"--device=/dev/video0:/dev/video0",
-		"-e",
-		"DISPLAY=${env:DISPLAY}",
-		"-v",
-		"/tmp/.X11-unix:/tmp/.X11-unix",
-		"-v",
-		"/home/alberto/.ssh:/home/ml/.ssh:ro"
-	],
+// 	"runArgs": [
+// 		"--gpus",
+// 		"all",
+// 		"--device=/dev/video0:/dev/video0",
+// 		"-e",
+// 		"DISPLAY=${env:DISPLAY}",
+// 		"-v",
+// 		"/tmp/.X11-unix:/tmp/.X11-unix",
+// 		"-v",
+// 		"/home/alberto/.ssh:/home/ml/.ssh:ro"
+// 	],
 	"build": {
 		"args": {
 			"USER_ID": "1000",
